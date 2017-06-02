@@ -1,7 +1,12 @@
 # StreamSDKforOSX
-It's the stream sdk for OSX to connect to MindWave Mobile by BT with EEG and ECG.
+The Stream SDK for OSX provides a library for streaming and parsing EEG 
+and ECG data from NeuroSky devices, such as MindWave Mobile. The data 
+stream can be opened and read from Bluetooth, or from files (for 
+previously-recorded data stream files).
 
-If this is your first time using the “Stream SDK for OSX”, please start by reading the "StreamSDKForMac” PDF.  It will tell you everything you need to know to get started.
+If this is your first time using the “Stream SDK for OSX”, please start by 
+reading the "StreamSDKForMac” PDF.  It will tell you everything you need to 
+know to get started.
 
 Happy coding!
 
