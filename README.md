@@ -5,7 +5,7 @@ stream can be opened and read from Bluetooth, or from files (for
 previously-recorded data stream files).
 
 If this is your first time using the “Stream SDK for OSX”, please start by 
-reading the "StreamSDKForMac” PDF.  It will tell you everything you need to 
+reading the "StreamSDKForMac" PDF.  It will tell you everything you need to 
 know to get started.
 
 Happy coding!
