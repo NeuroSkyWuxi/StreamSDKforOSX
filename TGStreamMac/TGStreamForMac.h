@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, SendCMDType) {
 - (void) startRecordRawData;
 - (void) stopRecordRawData;
 
--(void)sendCommand:(SendCMDType)cmdType;
+- (void)sendCommand:(SendCMDType)cmdType;
 
 - (void) enableLog:(BOOL)enabled;
 

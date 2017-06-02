@@ -11,6 +11,8 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate,TGStreamDelegate>
 
++ (NSString *)searchForDevice:(NSString *)deviceName;
+
 - (IBAction)recordBegin:(NSButton *)sender;
 
 - (IBAction)recordEnd:(id)sender;

@@ -25,10 +25,12 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
     // Insert code here to initialize your application
+    NSString *devicePort = [AppDelegate searchForDevice:@"MindWaveMobile"];
+    NSLog(@"devicePort: %@", devicePort);
     
     //tty.BrainLink-SerialPort
     //-/dev/tty.MindWaveMobile-DevA    --- /dev/tty.BrainLink-SerialPort
-    streamMac=[TGStreamForMac sharedInstance:@"/dev/tty.MindWaveMobile-DevA"];
+    streamMac=[TGStreamForMac sharedInstance:devicePort];
     streamMac.delegate=self;
     [streamMac enableLog:true];
     
@@ -41,6 +43,24 @@
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
     return YES;
+}
+
+// TODO: Need to support multiple ports.
++ (NSString *)searchForDevice:(NSString *)deviceName {
+    NSString *searchString = [@"tty." stringByAppendingString:deviceName];
+    NSString *result = [[NSString alloc] init];
+    
+    NSError * error;
+    NSArray * devContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"/dev/" error:&error];
+    
+    for(NSString *fileName in devContents){
+        if([fileName containsString:searchString]){
+            NSLog(@"%@", fileName);
+            result = fileName;
+        }
+    }
+    
+    return result;
 }
 
 #pragma mark - TGStream delegate
