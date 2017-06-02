@@ -39,6 +39,10 @@
     // Insert code here to tear down your application
 }
 
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication {
+    return YES;
+}
+
 #pragma mark - TGStream delegate
 -(void) onDataReceived:(NSInteger)datatype data:(int)data obj:(NSObject *)obj {
     
