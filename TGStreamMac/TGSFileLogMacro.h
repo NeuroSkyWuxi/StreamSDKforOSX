@@ -16,5 +16,4 @@ extern NSString                *sdkLogPath;
 
 void _Log(NSString *file, int lineNumber, NSString *funcName, NSString *message);
 
-
 @end

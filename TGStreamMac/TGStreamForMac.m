@@ -22,18 +22,18 @@ static NSString *const sdkVersion                                 =@"1.8";
 static NSString *mindWaveMobilePortName       =@"/dev/tty.MindWaveMobile-SerialPo";
 
 NSString  * const     TGSSDKLogPrefix    = @"Stream SDK MAC-- ";
-BOOL                      TGSenableLogsFlag  = true;
+BOOL                  TGSenableLogsFlag  = false;
 
 dispatch_queue_t     logQueue;
-NSString                  *sdkLogPath;
+NSString            *sdkLogPath;
 
 @implementation TGStreamForMac{
     
-    TGSIParser          *normalParser;
+    TGSIParser      *normalParser;
     ConnectionStates ConnectionState;
 
     //file stream
-    NSInputStream    *inputStream;
+    NSInputStream   *inputStream;
     dispatch_queue_t thinkGearQueue;
     dispatch_queue_t tTGOpenPortQueue;
     
@@ -119,28 +119,24 @@ static const NSTimeInterval kTimeoutDuration = 5;
 -(void)fireSerialPort
 {
     // fire listen Port
-     dispatch_async(tTGOpenPortQueue, ^{
-       @try
-       {
-           if (!kORSSerialPort)
-           {
-               kORSSerialPort=[ORSSerialPort serialPortWithPath:mindWaveMobilePortName];
-               kORSSerialPort.delegate=self;
-           }
-           [kORSSerialPort open];
-           if(TGSenableLogsFlag) NSLog(@"%@ is %@", mindWaveMobilePortName, kORSSerialPort.isOpen ? @"open" : @"close");
-       }
-       @catch (NSException *exception) {
-           NSLog(@"Error: %@",exception);
-       } @finally {
-           
-       }
-     });
+    dispatch_async(tTGOpenPortQueue, ^{
+        @try{
+            if (!kORSSerialPort){
+                kORSSerialPort=[ORSSerialPort serialPortWithPath:mindWaveMobilePortName];
+                kORSSerialPort.delegate=self;
+            }
+            [kORSSerialPort open];
+            if(TGSenableLogsFlag) NSLog(@"%@ is %@", mindWaveMobilePortName, kORSSerialPort.isOpen ? @"open" : @"close");
+        }@catch (NSException *exception) {
+            NSLog(@"Error: %@",exception);
+        } @finally {
+        }
+    });
 }
 
 -(void) checkBaudCount
 {
-  //  NSLog(@"diff: %d",baundCount-baundOld);
+    //  NSLog(@"diff: %d",baundCount-baundOld);
     baundCount = baundOld;
 }
 
@@ -148,8 +144,7 @@ static const NSTimeInterval kTimeoutDuration = 5;
 {
     // fire listen Port
     dispatch_async(tTGOpenPortQueue, ^{
-        @try
-        {
+        @try{
             [kORSSerialPort close];
         }
         @catch (NSException *exception) {
@@ -272,8 +267,7 @@ static int baundCount = 0;
 #pragma mark -- startStream --
 - (void)startStream
 {
-    if (!isPortOpened)
-    {
+    if (!isPortOpened){
         [self fireSerialPort];
     }
 }
@@ -521,8 +515,7 @@ static int baundCount = 0;
                 NSRange range = NSMakeRange(0, bytesRead);
                 [readData replaceBytesInRange:range withBytes:NULL length:0];
                 
-            }
-            else{
+            }else{
                 endOfStream = true;
                 [self setConnectionState:STATE_COMPLETE];
             }

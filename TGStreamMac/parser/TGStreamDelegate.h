@@ -32,7 +32,7 @@
 
 -(void)onStatesChanged:(ConnectionStates)connectionState;
 
--(void) onChecksumFail:(Byte *)payload length:(NSUInteger)length checksum:(NSInteger)checksum;
+-(void)onChecksumFail:(Byte *)payload length:(NSUInteger)length checksum:(NSInteger)checksum;
 
 -(void)onRecordFail:(RecrodError)flag;
 

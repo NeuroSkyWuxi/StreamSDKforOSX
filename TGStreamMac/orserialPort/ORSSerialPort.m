@@ -249,7 +249,7 @@ static __strong NSMutableArray *allSerialPorts;
 
 #pragma mark - Public Methods
 
-- (void)open;
+- (void)open
 {
 	if (self.isOpen) return;
 	

@@ -35,6 +35,7 @@
     [streamMac enableLog:true];
     
     NSLog(@"getVersion:%@",[streamMac getVerison]);
+    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -56,7 +57,7 @@
     for(NSString *fileName in devContents){
         if([fileName containsString:searchString]){
             NSLog(@"%@", fileName);
-            result = fileName;
+            result = [@"/dev/" stringByAppendingString:fileName];
         }
     }
     
@@ -161,7 +162,7 @@ static NSUInteger checkSum=0;
     
     checkSum++;
     
-    NSLog(@"CheckSum lentgh:%lu  CheckSum:%lu",(unsigned long)length,(unsigned long)checksum);
+    NSLog(@"CheckSum length:%lu  CheckSum:%lu",(unsigned long)length,(unsigned long)checksum);
     
     NSLog(@"CheckSum total: %d",(int)checkSum);
     
